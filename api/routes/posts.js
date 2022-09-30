@@ -1,5 +1,5 @@
 var express = require("express");
-var {getPosts, getPostAvatar} = require("../controllers/posts");
+var {getPosts, getPostAvatar, addPost} = require("../controllers/posts");
 
 
 const router = express.Router();
@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/avatar/:id',getPostAvatar)
 router.get('/',getPosts)
+router.post('/add',addPost)
 
 
 

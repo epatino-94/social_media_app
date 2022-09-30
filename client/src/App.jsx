@@ -3,6 +3,7 @@ import Register from './pages/Register';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Create from './pages/Create'
 import{
   createBrowserRouter,
   RouterProvider,
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/create',
+        element: <Create />
       }
     ]
   },

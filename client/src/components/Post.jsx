@@ -32,7 +32,7 @@ const Post = (props) => {
 
 
   return (
-    <Card sx={{ minWidth: 345, minHeight: 400  }}>
+    <Card sx={{ minWidth: 375, minHeight: 400, maxWidth: 375  }}>
       <StyledCardHeader
         avatar={
           <Avatar src={avatarUrl ? avatarUrl : "/broken-image.jpg"} />
@@ -41,7 +41,7 @@ const Post = (props) => {
       />
       <CardMedia
         component="img"
-        height="194"
+        height="350"
         image={`http://192.168.1.3:8080${imgurl}`}
         alt="Paella dish"
       />

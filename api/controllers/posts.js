@@ -39,14 +39,12 @@ const addPost = (req, res) => {
     jwt.verify(token,"jwtkey",(err,userInfo)=>{
         if(err) return res.status(403).json("Token is not valid!");
 
-        const q = "INSERT INTO posts(`title`,`desc`,`img`,`cat`,`date`,`uid`) VALUES (?)"
+        const q = "INSERT INTO posts(`caption`,`imgurl`,`date`,`uid`) VALUES (?)"
         const values = [
-            req.body.title,
-            req.body.desc,
-            req.body.img,
-            req.body.cat,
+            req.body.caption,
+            req.body.imgurl,
             req.body.date,
-            userInfo.id
+            req.body.username,
         ]
         db.query(q,[values], (err,data)=>{
             if(err) return res.status(500).json(err);
@@ -101,5 +99,6 @@ const updatePost = (req, res) => {
 
 module.exports = {
     getPosts: getPosts,
-    getPostAvatar: getPostAvatar
+    getPostAvatar: getPostAvatar,
+    addPost: addPost
 }
