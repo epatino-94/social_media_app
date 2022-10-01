@@ -67,7 +67,7 @@ const LogIn = (props) => {
             <StyledTypography component="h1" variant="h5">
               InstaPix
             </StyledTypography>
-            {registered && <StyledMuiAlert severity="success">Successfully created account!</StyledMuiAlert>}
+            {registered && !error && <StyledMuiAlert severity="success">Successfully created account!</StyledMuiAlert>}
             {error && <StyledMuiAlert severity="error">{error}</StyledMuiAlert>}
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
               <TextField

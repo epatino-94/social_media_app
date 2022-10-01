@@ -2,6 +2,7 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var posts = require('./routes/posts');
 var auth = require('./routes/auth');
+var users = require('./routes/users');
 var app = express();
 var multer = require('multer');
 
@@ -30,6 +31,7 @@ app.post(`/api/upload`,upload.single(`file`), (req,res,next)=>{
 app.use('/', express.static('public'));
 app.use("/api/auth",auth);
 app.use('/api/posts', posts);
+app.use('/api/users', users);
 
 
 

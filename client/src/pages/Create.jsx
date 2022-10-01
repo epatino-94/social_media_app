@@ -72,7 +72,7 @@ const Create = () => {
 
 
 const CreateContainer = styledComponent.div`
-    background-color: #DEE4E7;
+    background-color: #white;
     height: 100vh;
     display: flex;
     align-items: center;

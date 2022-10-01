@@ -4,7 +4,8 @@ const db = mysql.createConnection({
     host: "127.0.0.1",
     user: "springstudent",
     password: "springstudent",
-    database:"instapix"
+    database:"instapix",
+    multipleStatements:true
 })
 
 module.exports = db;

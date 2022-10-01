@@ -7,20 +7,17 @@ import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import moment from 'moment';
-import {useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
 
     const [selectedFile, setSelectedFile] = useState()
-    const [caption,setCaption] = useState()
+    const [caption, setCaption] = useState()
     const [preview, setPreview] = useState()
     const navigate = useNavigate();
-    const {username} = useSelector((state)=>state.app);
+    const { username } = useSelector((state) => state.app);
 
-    const upload = async () => {
-
-      }
 
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
@@ -46,37 +43,40 @@ const CreatePost = () => {
         setSelectedFile(e.target.files[0])
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
+        try {
             const formData = new FormData();
-            formData.append('file',selectedFile)
-            const uploadRes = await axios.post('/api/upload',formData);
+            formData.append('file', selectedFile)
+            const uploadRes = await axios.post('/api/upload', formData);
             const date = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-            const res = await axios.post('/api/posts/add',{caption:caption,imgurl:uploadRes.data,date:date,username:username})
+            const res = await axios.post('/api/posts/add', { caption: caption, imgurl: uploadRes.data, date: date, username: username })
             navigate('/')
-          }catch(err){
+        } catch (err) {
             console.log(err)
-          }
+        }
     }
 
 
     return (
-        <Card sx={{ minWidth: 375, minHeight: 400, maxWidth: 375 }}>
+        <Card sx={{ border: '1px solid lightgray', minWidth: 375, minHeight: 400, maxWidth: 375 }}>
             <CardContainer>
-                <StyledForm onSubmit={(e)=>(handleSubmit(e))}>
-                    <IconWrapper>{preview && (<StyledCloseIcon onClick={() => setPreview(null)} />)}</IconWrapper>
+                <StyledForm onSubmit={(e) => (handleSubmit(e))}>
+                    <IconWrapper>{preview && (<StyledDiscardButton variant="outlined" color="error" onClick={() => setSelectedFile(null)}>DISCARD</StyledDiscardButton>)}</IconWrapper>
                     <ImageContainer>
                         {preview && (<img src={preview} />)}
                         {!preview && (
-                            <StyledButton preview={preview ? true : false} variant="contained" component='label'>
+                            <StyledButton preview={preview ? 'true' : 'false'} variant="contained" component='label'>
                                 <input value={preview} onChange={onSelectFile} type="file" hidden />
                                 Upload a Image
                             </StyledButton>
                         )}
                     </ImageContainer>
-                    <StyledTextField value={caption} onChange={(e)=>setCaption(e.target.value)} label='Caption' multiline id="caption" type="text" />
-                    <input type='submit'></input>
+                    <StyledTextField value={caption} onChange={(e) => setCaption(e.target.value)} label='Caption' multiline id="caption" type="text" />
+                    <Button disabled={selectedFile && caption ? false: true} preview={preview ? 'true' : 'false'} variant="contained" component='label'>
+                        <input type='submit' hidden></input>
+                        POST
+                    </Button>
                 </StyledForm>
             </CardContainer>
         </Card>
@@ -90,6 +90,9 @@ const StyledForm = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items:center;
+    padding-bottom: 20px;
+  
+
 `
 
 const StyledTextField = styled(TextField)`
@@ -101,11 +104,12 @@ const IconWrapper = styled.div`
     height: 30px;
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: start;
 `
 
-const StyledCloseIcon = styled(CloseIcon)`
-    margin-left: 15px;
+const StyledDiscardButton = styled(Button)`
+    margin-left: 15px !important;
 `
 
 const StyledButton = styled(Button)`

@@ -7,7 +7,7 @@ const initialState = {
     bio: null,
     registered: null,
     firstname: null,
-    lastname: null
+    lastname: null,
 }
 
 export const appState = createSlice({

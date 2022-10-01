@@ -3,6 +3,7 @@ import Register from './pages/Register';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Profile from './pages/Profile'
 import Create from './pages/Create'
 import{
   createBrowserRouter,
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/create',
         element: <Create />
+      },
+      {
+        path: '/profile/:name',
+        element: <Profile />
       }
     ]
   },
