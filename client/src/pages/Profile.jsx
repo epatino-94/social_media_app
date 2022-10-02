@@ -13,6 +13,11 @@ const Profile = () => {
     const [params,setParams] = React.useState(location.pathname.split('/')[2] || null)
 
     React.useEffect(()=>{
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
         setParams(location.pathname.split('/')[2]);
     },[location])
 
@@ -32,9 +37,10 @@ const Profile = () => {
 
 const ProfileContainer = styled.div`
     background-color: #white;
-    height: 100vh;
+    margin: 80px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 `
 

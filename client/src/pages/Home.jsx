@@ -108,7 +108,7 @@ const NoPostContainer = styledComponent.div`
 `
 
 const HomeContainer = styledComponent.div`
-    padding: 80px 0px;
+    padding: 80px 0px 0px 0px;
     background-color: white;
 `
 

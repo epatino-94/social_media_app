@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+
+
 const initialState = {
     username: null,
     img: null,
@@ -8,6 +10,8 @@ const initialState = {
     registered: null,
     firstname: null,
     lastname: null,
+    viewport: null,
+    mobileFullScreenEnabled: false,
 }
 
 export const appState = createSlice({
@@ -23,11 +27,18 @@ export const appState = createSlice({
         },
         registered:(state)=>{
             state.registered = true;
-        }
+        },
+        setViewport:(state,action)=>{
+            state.viewport = action.payload?.viewport;
+        },
+        setMobileFullScreen:(state,action)=>{
+            state.mobileFullScreenEnabled = action.payload;
+        },
+
     }
 })
 
 
-export const {login,registered} = appState.actions;
+export const {login,registered,setViewport,setMobileFullScreen,setNavCallback} = appState.actions;
 
 export default appState.reducer;

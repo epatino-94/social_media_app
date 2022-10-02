@@ -13,13 +13,13 @@ import moment from 'moment'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 
 const Post = (props) => {
   const [avatarUrl, setAvatarUrl] = React.useState(null);
   const {username} = useSelector((state)=>state.app);
-  const { uid, imgurl, caption, date, id } = props
+  const { uid, imgurl, caption, date, id, scroll } = props
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,13 +45,13 @@ const Post = (props) => {
 
 
   return (
-    <Card sx={{ border: '1px solid lightgray', backgroundColor: 'white', minWidth: 375, minHeight: 400, maxWidth: 375 }}>
+    <Card  sx={{ position: 'relative', border: '1px solid lightgray', backgroundColor: 'white', minWidth: 375, minHeight: 400, maxWidth: 375 }}>
       <StyledCardHeader
         avatar={
           <Avatar src={avatarUrl ? avatarUrl : ""} />
         }
-        title={uid}
-      action={(username === uid) ? <Button onClick={handleDelete} variant="outlined" color="error">DELETE</Button> : <></>
+        title={<Link to={`/profile/${uid}`}>{uid}</Link>}
+      action={(username === uid) ? <Button onClick={handleDelete} variant="outlined" color="error">DELETE POST</Button> : <></>
       }
       />
       <CardMedia
@@ -69,11 +69,14 @@ const Post = (props) => {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <DatePosted>{moment(date).fromNow()}</DatePosted>
+        <DatePosted ref={scroll}>{moment(date).fromNow()}</DatePosted>
+
       </CardActions>
     </Card>
   );
 }
+
+
 
 const DatePosted = styled.div`
 
@@ -81,13 +84,23 @@ const DatePosted = styled.div`
 
 const StyledCardHeader = styled(CardHeader)`
 
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 
   .MuiCardHeader-title{
     font-weight: bold !important;
     text-align: left !important;
+    a{
+      text-decoration: none !important;
+      color: black;
+    }
   }
+
+  .MuiButtonBase-root{
+    
+  }
+
 `
 
 const StyledCardContent = styled(CardContent)`

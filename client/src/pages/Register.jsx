@@ -16,7 +16,7 @@ import MuiAlert from '@mui/material/Alert';
 const Copyright = (props) => {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © InstaPix '}
+      {'Copyright © Pix '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -67,7 +67,7 @@ const Register = () => {
             }}
           >
             <StyledTypography component="h1" variant="h5">
-              InstaPix
+              Pix
             </StyledTypography>
             {error && <StyledMuiAlert severity="error">{error}</StyledMuiAlert>}
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -178,7 +178,7 @@ const RegisterContainer = styled.div`
   display: flex;
   align-items:center;
   justify-content:center;
-  background-color: rgba(var(--b3f,250,250,250),1);
+  background-color: white;
 `
 
 const FormWrapper = styled.div`
